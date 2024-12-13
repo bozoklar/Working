@@ -15,9 +15,9 @@ public class TrelloStepDef {
     TrelloPage trelloPage;
 
     @Given("User navigates to {string}")
-    public void user_navigates_to() {
+    public void user_navigates_to(String url) {
         driver = DriverHelper.getDriver(); // Get WebDriver instance
-        driver.get("https://trello.com/"); // Navigate to URL
+        driver.get(url); // Navigate to URL
         trelloPage = new TrelloPage(driver); // Initialize TrelloPage
     }
 
@@ -37,7 +37,8 @@ public class TrelloStepDef {
 
     }
     // Scenario 1: Board Creation and List Creation
-    @Then("User creates a board and adds lists {string}")
+    @When("User create a board named {string}")
+    @Then("User create lists {string} the {string} board")
     public void user_creates_board_and_adds_lists(String listNames) {
         // Create lists from comma-separated values
         trelloPage.createBoard();
@@ -48,7 +49,7 @@ public class TrelloStepDef {
     }
 
     // Scenario 2: Card Creation and Movement
-    @When("I add the following cards to the {string} list:")
+    @When("User add the following cards to the {string} list:")
     public void i_add_the_following_cards_to_the_list(String listName, DataTable dataTable) {
         for (String cardName : dataTable.asList(String.class)) {
             trelloPage.addCard(cardName, listName);
