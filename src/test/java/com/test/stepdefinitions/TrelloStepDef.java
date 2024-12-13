@@ -35,13 +35,6 @@ public class TrelloStepDef {
     }
 
     // Scenario 1: Board Creation and List Creation
-    @When("I create a board named {string}")
-    public void i_create_a_board_named(String VaultN) {
-        TrelloPage.createBoard(VaultN);
-    }
-
-    @Then("User create lists {string} the {string} board")
-    public void user_create_lists_the_board(String listNames, String VaultN) {
         String[] lists = listNames.split(", ");
         for (String list : lists) {
             TrelloPage.createList(list);
