@@ -11,33 +11,39 @@ import utils.DriverHelper;
 
 public class TrelloStepDef {
 
-
+    WebDriver driver;
+    TrelloPage trelloPage;
 
     @Given("User navigates to {string}")
     public void user_navigates_to() {
-        WebDriver driver= DriverHelper.getDriver();
-       new TrelloPage(driver);
+        driver = DriverHelper.getDriver(); // Get WebDriver instance
+        driver.get("https://trello.com/"); // Navigate to URL
+        trelloPage = new TrelloPage(driver); // Initialize TrelloPage
     }
 
     @When("User click logIn button")
     public void user_clicks_logIn_button() {
+        trelloPage.loginButton();
     }
 
     @Then("User provides {string} and click continue button")
     public void user_provides_email_and_click_continue_button() {
-        TrelloPage.login(ConfigReader.readProperty("email");
+        trelloPage.emailField();
     }
 
     @Then("User provides {string} click log button")
     public void user_provides_click_log_button(){
-        TrelloPage.login(ConfigReader.readProperty("password"));
+        trelloPage.enterPassword();
 
     }
-
     // Scenario 1: Board Creation and List Creation
-        String[] lists = listNames.split(", ");
+    @Then("User creates a board and adds lists {string}")
+    public void user_creates_board_and_adds_lists(String listNames) {
+        // Create lists from comma-separated values
+        trelloPage.createBoard();
+        String[] lists = listNames.split(",");
         for (String list : lists) {
-            TrelloPage.createList(list);
+            trelloPage.createList(list); // Call TrelloPage to create each list
         }
     }
 
@@ -45,7 +51,7 @@ public class TrelloStepDef {
     @When("I add the following cards to the {string} list:")
     public void i_add_the_following_cards_to_the_list(String listName, DataTable dataTable) {
         for (String cardName : dataTable.asList(String.class)) {
-            TrelloPage.addCard(cardName, listName);
+            trelloPage.addCard(cardName, listName);
         }
     }
 
@@ -54,14 +60,14 @@ public class TrelloStepDef {
         for (java.util.List<String> row : dataTable.asLists()) {
             String cardName = row.get(0);
             String moveTo = row.get(1);
-            TrelloPage.moveCardToList(cardName, moveTo);
+            trelloPage.moveCardToList(cardName, moveTo);
         }
     }
 
     // Scenario 3: Board Closing and Deletion
     @Then("The board should be closed and deleted")
     public void the_board_should_be_closed_and_deleted() {
-        TrelloPage.closeBoard();
-        TrelloPage.deleteBoard();
+        trelloPage.closeBoard();
+        trelloPage.deleteBoard();
     }
 }

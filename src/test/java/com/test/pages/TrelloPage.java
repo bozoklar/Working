@@ -11,37 +11,40 @@ public class TrelloPage {
     WebDriver driver;
 
     @FindBy(xpath = "//button[contains(text(),'Log in')]")
-    private WebElement loginButton;
+     WebElement loginButton;
 
     @FindBy(id = "user")
-    private WebElement emailField;
+     WebElement emailField;
+
+    @FindBy(xpath = "//button[contains(text(),'Log in')]")
+     WebElement ContinueButton;
 
     @FindBy(id = "password")
-    private WebElement passwordField;
+     WebElement passwordField;
 
     @FindBy(xpath = "//input[@name='login']")
-    private WebElement loginSubmitButton;
+     WebElement SubmitButton;
 
     @FindBy(xpath = "//button[@aria-label='Create new board']")
-    private WebElement createBoardButton;
+     WebElement createBoardButton;
 
     @FindBy(xpath = "//input[@placeholder='Board title']")
-    private WebElement boardTitleField;
+     WebElement boardTitleField;
 
     @FindBy(xpath = "//button[text()='Create Board']")
-    private WebElement createBoardSubmitButton;
+     WebElement createBoardSubmitButton;
 
     @FindBy(xpath = "//textarea[@placeholder='Add a list title']")
-    private WebElement listTitleField;
+     WebElement listTitleField;
 
     @FindBy(xpath = "//div[@class='list-add-button']")
-    private WebElement addListButton;
+     WebElement addListButton;
 
     @FindBy(xpath = "//div[@class='js-add-card']")
-    private WebElement addCardButton;
+     WebElement addCardButton;
 
     @FindBy(xpath = "//div[@class='card-composer-textarea']")
-    private WebElement cardTextField;
+     WebElement cardTextField;
 
     // Constructor
     public TrelloPage(WebDriver driver) {
@@ -50,30 +53,25 @@ public class TrelloPage {
     }
 
     // Login Methods
-    public void clickLoginButton() {
+    public void loginButton() {
         loginButton.click();
     }
 
-    public void enterEmail(String email) {
-        emailField.sendKeys(email);
+    public void emailField() {
+        emailField.sendKeys("aylibozoklar@gmail.com");
+        ContinueButton.submit();
     }
 
-    public void clickContinueButton() {
-        emailField.submit();
-    }
 
-    public void enterPassword(String password) {
-        passwordField.sendKeys(password);
-    }
-
-    public void clickLoginSubmitButton() {
-        loginSubmitButton.click();
+    public void enterPassword() {
+        passwordField.sendKeys("12155407Ab");
+        SubmitButton.click();
     }
 
     // Board Creation Methods
-    public void createBoard(String boardName) {
+    public void createBoard() {
         createBoardButton.click();
-        boardTitleField.sendKeys(boardName);
+        boardTitleField.sendKeys("VaultN");
         createBoardSubmitButton.click();
     }
 
@@ -88,9 +86,9 @@ public class TrelloPage {
     public void addCard(String cardName, String listName) {
         WebElement list = driver.findElement(By.xpath("//div[contains(text(),'"+ listName +"')]"));
         list.click();
-        login.click();
+        addListButton.click();
         cardTextField.sendKeys(cardName);
-        cardTextField.submit();
+        addCardButton.submit();
     }
 
     // Card Move Methods (Drag and Drop)
