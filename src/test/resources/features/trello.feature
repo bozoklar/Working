@@ -5,12 +5,17 @@ Feature:  Testing Login Functionality of Trello Website
   Background:Navigation to the website & Happy Path for trello Login
     Given User navigates to "https://www.trello.com/"
     When User click logIn button
-    Then User provides "email" and click continue button
-    Then User provides "password" click log button
+    Then User provides "aylinbozoklar@gmail.com" and click continue button
+    Then User provides "12155407Ab" click log button
 
-  Scenario:Happy Path for a board creation and lists creation inside these board
+  Scenario:Happy Path for a board creation and lists creation inside this board
     When User create a board named "VaultN"
-    Then User create lists "Lists" the "VaultN" board
+    Then User create multiple lists on the board
+      | Backlog |
+      | Todo    |
+      | Doing   |
+      | Testing |
+      | Done    |
 
  Scenario:Happy Path for the cards' creation and migration between the lists
    When  User add the following cards to the "Todo" list:
@@ -18,8 +23,13 @@ Feature:  Testing Login Functionality of Trello Website
      | Sign up for Trello     |
      | Get key and token      |
      | Build a collection     |
+     | Working on Task        |
 
-    Then User move the cards as follows:
+   Then  User add the following cards to the "Backlog" list:
+     | UI Automation              |
+     | Writing Test Scenarios     |
+
+    And User move the cards as follows:
   | Card Name              | Move To |
   | Sign up for Trello     | Done   |
   | Get key and token      | Testing|
