@@ -1,6 +1,7 @@
 package com.test.stepdefinitions;
 
 import com.test.pages.TrelloPage;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
@@ -65,30 +66,35 @@ public class TrelloStepDef {
         List<List<String>> rows = dataTable.asLists(String.class);
         for (List<String> row : rows) {
             String todo = row.get(0);
-                String backlog = row.get(1);
-                trelloPage.addCardToList(backlog);
+            String backlog = row.get(1);
+            trelloPage.addCardToList(backlog);
             trelloPage.addCardToList(todo);
 
         }
     }
 
-//    @When("User move the cards as follows:")
-//    public void user_move_the_cards_as_follows(DataTable dataTable) {
-//           List<List<String>> rows = dataTable.asLists(String.class);
-//       // Iterate through each row and move the card to the target list
-//              for (List<String> row : rows) {
-//              String cardName = row.get(0);
-//              String targetList = row.get(1);
-//               trelloPage.moveCardToList(cardName, targetList);  // Move the card
-//           }
+    @When("User move the cards as follows:")
+    public void user_move_the_cards_as_follows(DataTable dataTable) throws InterruptedException {
+        // Iterate through each row and move the card to the target list
+        List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
 
-        //   Scenario 3: Board Closing and Deletion
-        //   @Then("The board should be closed and deleted")
-        //   public void the_board_should_be_closed_and_deleted() {
-//        trelloPage.closeBoard();
-//        trelloPage.deleteBoard();
-    //}
-//}
+        // Loop through each row in the DataTable
+        for (Map<String, String> row : rows) {
+            String cardName = row.get("card Name");
+            String targetList = row.get("Target List");
+
+            // Call the method to move the card to the target list
+            //      trelloPage.moveCardToList(cardName, targetList);
+
+        }
     }
+//    @And("The board should be closed and deleted")
+//    public void the_board_should_be_closed_and_deleted() {
+//            trelloPage.closeBoard();
+//            trelloPage.deleteBoard();
+//        }
+    }
+
+
 
 

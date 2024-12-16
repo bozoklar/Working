@@ -24,10 +24,9 @@ Feature:  Testing Login Functionality of Trello Website
 
 
 #    And User move the cards as follows:
-#  | Card Name              | Move To |
+#
 #  | Sign up for Trello     | Done   |
 #  | Get key and token      | Testing|
 #  | Build a collection     | Doing  |
-#
-#  Scenario:Happy Path for the board closing and deletion
-#    And The board should be closed and deleted
+##
+#     And The board should be closed and deleted

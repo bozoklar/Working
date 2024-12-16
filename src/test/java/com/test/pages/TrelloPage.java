@@ -56,10 +56,7 @@ public class TrelloPage {
     @FindBy(xpath = "//button[@class='bxgKMAm3lq5BpA SdamsUKjxSBwGb SEj5vUdI3VvxDc']")
     WebElement addCard;
 
-    @FindBy(xpath = "/html[1]/body[1]/div[1]/div[2]/div[1]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[1]/main[1]/div[1]/main[1]/section[3]/ul[1]/li[2]/div[1]/div[1]/a[1]/div[2]']")
-    WebElement boardClick;
-
-    @FindBy(xpath = "//div[@class='XpRtBItFRSeuWI']")
+    @FindBy(xpath = "//textarea[@class='rZbD0IuG2SfEkv']")
     WebElement cardField;
 
     @FindBy(xpath = "//button[@data-testid='quick-card-editor-move']")
@@ -77,8 +74,29 @@ public class TrelloPage {
     @FindBy(xpath = "//span[@data-testid='CloseIcon']")
     WebElement CloseIcon;
 
+    @FindBy(xpath = "//li[5]//div[1]//div[3]//button[1]")
+    WebElement targetList;
+
     @FindBy(xpath = "//p[@class='nNvJhnERHVQb9o']")
     WebElement Boards;
+
+    @FindBy(xpath = "//button[@class='vog49kU3sQ8CdC Gdb3ZRORJhWznf frrHNIWnTojsww bxgKMAm3lq5BpA HAVwIqCeMHpVKh SEj5vUdI3VvxDc']")
+    WebElement closeBoard;
+
+    @FindBy(xpath = "/html[1]/body[1]/div[4]/div[1]/section[1]/div[1]/div[1]/button[1]/span[1]")
+    WebElement close;
+
+    @FindBy(xpath = "//button[@class='bxgKMAm3lq5BpA KpU415sFFvOzGZ PnEv2xIWy3eSui SEj5vUdI3VvxDc']")
+    WebElement closeButton;
+
+    @FindBy(xpath = "//button[@class='bxgKMAm3lq5BpA SEj5vUdI3VvxDc']")
+    WebElement closeBoardButton;
+
+    @FindBy(xpath = "//button[@class='Bp80TGmc9hQIdE bxgKMAm3lq5BpA KpU415sFFvOzGZ SEj5vUdI3VvxDc']")
+    WebElement deleteButton;
+
+    @FindBy(xpath = "//span[@data-testid='CloseIcon']")
+    WebElement crossIcon;
 
     // Constructor
     public TrelloPage(WebDriver driver) {
@@ -132,26 +150,36 @@ public class TrelloPage {
         addCard.click();
         Thread.sleep(3000);
     }
-}
 
-  //   Card Move Methods (Drag and Drop)
-//    public void moveCardToList(String cardName, String moveToList) {
-//        new org.openqa.selenium.interactions.Actions(driver).dragAndDrop(card, targetList).perform();
-//    cardField.click();
-//    move.click();
-//    listScroll.click();
-//    positionScroll.click();
-//    moveButton.click();
-//    CloseIcon.click();
 
-    }
+    // Card Move Methods (Drag and Drop)
+//    public void moveCardToList(String cardName, String targetList) throws InterruptedException {
+//        //      new org.openqa.selenium.interactions.Actions(driver).dragAndDrop(cardName,targetList).perform();
+//      //  Actions actions = new Actions(driver);
+//      //  actions.dragAndDrop(cardField, targetList).perform();
+//        //   cardField.click();
+//        Thread.sleep(2000);
+//        move.click();
+//        Thread.sleep(2000);
+//        listScroll.click();
+//        Thread.sleep(2000);
+//        positionScroll.click();
+//        Thread.sleep(2000);
+//        moveButton.click();
 //
-//    // Board Closing and Deletion Methods
+//    }
+//
+    // Board Closing and Deletion Methods
 //    public void closeBoard() {
 //        Boards.click();
-//        closeBoardButton.click();
-//        closeBoardConfirmButton.click();
-
-//    public void deleteBoard() {
-//        deleteButton.click();
-//        confirmDeleteButton.click();
+//        closeBoard.click();
+//        closeButton.click();
+//
+//    }
+//        public void deleteBoard () {
+//            closeBoardButton.click();
+//            deleteButton.click();
+//            crossIcon.click();
+//            close.click();
+//        }
+    }
