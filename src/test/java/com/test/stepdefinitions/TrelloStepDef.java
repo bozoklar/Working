@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import utils.DriverHelper;
 
 import java.util.List;
+import java.util.Map;
 
 
 public class TrelloStepDef {
@@ -40,7 +41,7 @@ public class TrelloStepDef {
 
     }
 
-    // Scenario 1: Board Creation and List Creation
+    // Board Creation and List Creation
     @When("User create a board named {string}")
     public void user_create_board(String boardName) throws InterruptedException {
         trelloPage.createBoard(boardName);
@@ -49,7 +50,7 @@ public class TrelloStepDef {
 
     // Step to create multiple lists using a DataTable
     @Then("User create multiple lists on the board")
-    public void user_creates_multiple_lists_on_the_board(DataTable dataTable) throws InterruptedException {
+    public void user_create_multiple_lists_on_the_board(DataTable dataTable) throws InterruptedException {
         // Extract list names from the DataTable
         List<String> listNames = dataTable.asList(String.class);
 
@@ -59,39 +60,51 @@ public class TrelloStepDef {
         }
     }
 
-    // Scenario 2: Card Creation and Movement
-    @When("User add the following cards to the following lists:")
-    public void user_adds_the_following_cards_to_the_list(DataTable dataTable) throws InterruptedException {
-        List<String> cardNames = dataTable.asList(String.class);
-        for (String cardName : cardNames) {
-       //     trelloPage.addCardToList(cardName);
-        }
+    @When("User create multiple cards on the List")
+    public void user_create_multiple_cards_on_the_list(DataTable dataTable) throws InterruptedException {
+        Map<String,String>Todo=dataTable.asMap();
+       String cardName= Todo.get("card Name");
+        String listName= Todo.get("List Name");
+        trelloPage.addCardToList(cardName);
+        trelloPage.addCardToList(listName);
+
     }
 
-
-    @Then("User move the cards as follows:")
-    public void user_move_the_cards_as_follows(DataTable dataTable) {
-//        for (java.util.List<String> row : dataTable.asLists()) {
-//            String cardName = row.get(0);
-//            String moveTo = row.get(1);
-//            trelloPage.moveCardToList(cardName, moveTo);
+//        @When("User create multiple cards on the list")
+//        public void userCreateMultipleCardsOnTheList(List<List<String>> cardDetails) {
+//            // Loop over the table and create cards for each row
+//            for (List<String> cardName : ListName) {
+//                String cardName = row.get(0);
+//                String listName = row.get(1);
+//                trelloPage.openList(listName); // Open the appropriate list
+//                trelloPage.addCardTodo(cardName); // Add the card
+//            }
 //        }
+
+//        @When("User create multiple cards on the {string} List")
+//        public void user_create_multiple_cards_on_the_Todo_list(String listName, DataTable dataTable)
+////            List<String> cardNames = dataTable.asList(String.class,String.class);
 //
+//            for (String cardName : cardNames) {
+//                trelloPage.addCardToList("Todo", cardName);
+//            }
+//        }
 //    }
 
-    List<List<String>> rows = dataTable.asLists(String.class);
-    // Iterate through each row and move the card to the target list
-        for (List<String> row : rows) {
-        String cardName = row.get(0);
-        String targetList = row.get(1);
- //       trelloPage.moveCardToList(cardName, targetList);  // Move the card
-    }
-}
-  //   Scenario 3: Board Closing and Deletion
-    @Then("The board should be closed and deleted")
-    public void the_board_should_be_closed_and_deleted() {
+            //   List<List<String>> rows = dataTable.asLists(String.class);
+            // Iterate through each row and move the card to the target list
+            //      for (List<String> row : rows) {
+            //      String cardName = row.get(0);
+            //      String targetList = row.get(1);
+            //       trelloPage.moveCardToList(cardName, targetList);  // Move the card
+            //   }
+
+            //   Scenario 3: Board Closing and Deletion
+            //   @Then("The board should be closed and deleted")
+            //   public void the_board_should_be_closed_and_deleted() {
 //        trelloPage.closeBoard();
 //        trelloPage.deleteBoard();
-    }
-    }
+        }
+//    }
+
 

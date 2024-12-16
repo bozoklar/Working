@@ -7,8 +7,6 @@ Feature:  Testing Login Functionality of Trello Website
     When User click logIn button
     Then User provides "aylinbozoklar@gmail.com" and click continue button
     Then User provides "12155407Ab" click log button
-
-  Scenario:Happy Path for a board creation and lists creation inside this board
     When User create a board named "VaultN"
     Then User create multiple lists on the board
       | Backlog |
@@ -17,22 +15,21 @@ Feature:  Testing Login Functionality of Trello Website
       | Testing |
       | Done    |
 
- Scenario:Happy Path for the cards' creation and migration between the lists
-   When User add the following cards to the following lists:
-     | Card Name                  | Todo    |
-     | Sign up for Trello         | Todo    |
-     | Get key and token          | Todo    |
-     | Build a collection         | Todo    |
-     | Working on Task            | Todo    |
-     | UI Automation              | Backlog |
-     | Writing Test Scenarios     | Backlog |
+   When User create multiple cards on the List
+     |    card Name               | List Name |
+     | Sign up for Trello         |   Todo    |
+     | Get key and token          |   Todo    |
+     | Build a collection         |   Todo    |
+     | Working on Task            |   Todo    |
+     | UI Automation              |  Backlog  |
+     | Writing Test Scenarios     |  Backlog  |
 
-
-    And User move the cards as follows:
-  | Card Name              | Move To |
-  | Sign up for Trello     | Done   |
-  | Get key and token      | Testing|
-  | Build a collection     | Doing  |
-
-  Scenario:Happy Path for the board closing and deletion
-    And The board should be closed and deleted
+#
+#    And User move the cards as follows:
+#  | Card Name              | Move To |
+#  | Sign up for Trello     | Done   |
+#  | Get key and token      | Testing|
+#  | Build a collection     | Doing  |
+#
+#  Scenario:Happy Path for the board closing and deletion
+#    And The board should be closed and deleted

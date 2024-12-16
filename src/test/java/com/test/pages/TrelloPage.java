@@ -8,6 +8,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 import static utils.DriverHelper.driver;
 
 
@@ -15,28 +17,28 @@ public class TrelloPage {
 
 
     @FindBy(xpath = "//*[@id=\"BXP-APP\"]/header[1]/div/div[1]/div[2]/a[1]")
-     WebElement loginButton;
+    WebElement loginButton;
 
-    @FindBy(xpath="//input[@placeholder='Enter your email']")
-     WebElement emailField;
+    @FindBy(xpath = "//input[@placeholder='Enter your email']")
+    WebElement emailField;
 
     @FindBy(xpath = "//span[contains(text(),'Continue')]")
-     WebElement ContinueButton;
+    WebElement ContinueButton;
 
-    @FindBy(xpath="//input[@placeholder='Enter password']")
-     WebElement passwordField;
+    @FindBy(xpath = "//input[@placeholder='Enter password']")
+    WebElement passwordField;
 
     @FindBy(css = "#login-submit")
-     WebElement SubmitButton;
+    WebElement SubmitButton;
 
     @FindBy(xpath = "//span[contains(text(),'Create new board')]")
-     WebElement createBoardButton;
+    WebElement createBoardButton;
 
     @FindBy(css = ".fMvxkh4DHKJGnq")
     WebElement boardTitleField;
 
     @FindBy(xpath = "//button[contains(text(),'Create')]")
-     WebElement createBoardSubmitButton;
+    WebElement createBoardSubmitButton;
 
 
     @FindBy(xpath = "//*[@id=\"board\"]/div[1]/form/textarea")
@@ -46,13 +48,16 @@ public class TrelloPage {
     WebElement addList;
 
     @FindBy(xpath = "//button[@data-testid='list-add-card-button']")
-     WebElement addCardButton;
+    WebElement addCardButton;
 
     @FindBy(xpath = "//textarea[@placeholder='Enter a title or paste a link']")
-     WebElement cardTextField;
+    WebElement cardTextField;
 
     @FindBy(xpath = "//button[@class='bxgKMAm3lq5BpA SdamsUKjxSBwGb SEj5vUdI3VvxDc']")
     WebElement addCard;
+
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/div[2]/div[1]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[1]/main[1]/div[1]/main[1]/section[3]/ul[1]/li[2]/div[1]/div[1]/a[1]/div[2]']")
+    WebElement boardClick;
 
     @FindBy(xpath = "//div[@class='XpRtBItFRSeuWI']")
     WebElement cardField;
@@ -76,7 +81,7 @@ public class TrelloPage {
     WebElement Boards;
 
     // Constructor
-    public TrelloPage(WebDriver driver){
+    public TrelloPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
 
@@ -85,12 +90,12 @@ public class TrelloPage {
         loginButton.click();
     }
 
-    public void emailField(String email)  {
+    public void emailField(String email) {
         emailField.sendKeys(email);
         ContinueButton.submit();
     }
 
-    public void enterPassword(String password){
+    public void enterPassword(String password) {
         passwordField.sendKeys(password);
         SubmitButton.click();
     }
@@ -111,63 +116,44 @@ public class TrelloPage {
         listNameField.click();
         // Locate the input field for the list name
         listNameField.sendKeys(listName);
-        Thread.sleep(3000);
-
+        Thread.sleep(2000);
         addList.click();
-        Thread.sleep(1000);
+        Thread.sleep(3000);
     }
 
 
-public void addCardToList(String cardName,String targetListName) throws InterruptedException {
-    addCardButton.click();
-    // Locate the input field for the list name
-cardTextField.sendKeys(cardName);
-Thread.sleep(3000);
-  addList.click();
-    Thread.sleep(3000);
-    Actions action = new Actions(driver);
- //   action.dragAndDrop(cardElement, targetListElement).perform();
+    public void addCardToList(String cardName) throws InterruptedException {
+        addCardButton.click();
+        // Locate the input field for the list name
+        Thread.sleep(2000);
+        cardTextField.click();
+        cardTextField.sendKeys(cardName);
+        Thread.sleep(2000);
+        addCard.click();
+        Thread.sleep(3000);
+    }
 }
-
-
-
-
-//  Card Creation Methods
-// public void addCardToList(String listName, String cardName) {
-//     addCardButton.click();
 //
-//        cardTextField.sendKeys(cardName);
-//        addCardToList.click();
-////
-    }
-
-    // Card Move Methods (Drag and Drop)
- //   public void moveCardToList(String cardName, String moveToList) {
-    //    new org.openqa.selenium.interactions.Actions(driver).dragAndDrop(card, targetList).perform();
+//
+//
+//  //   Card Move Methods (Drag and Drop)
+//    public void moveCardToList(String cardName, String moveToList) {
+//        new org.openqa.selenium.interactions.Actions(driver).dragAndDrop(card, targetList).perform();
 //    cardField.click();
 //    move.click();
 //    listScroll.click();
 //    positionScroll.click();
 //    moveButton.click();
 //    CloseIcon.click();
-
- //   }
-
+//
+//    }
+//
 //    // Board Closing and Deletion Methods
 //    public void closeBoard() {
-//        WebElement boardMenu = driver.findElement(By.xpath("//button[@aria-label='Show menu']"));
 //        Boards.click();
-//        WebElement closeBoardButton = driver.findElement(By.xpath("//span[text()='More']"));
 //        closeBoardButton.click();
-//        WebElement closeBoardConfirmButton = driver.findElement(By.xpath("//span[text()='Close Board']"));
 //        closeBoardConfirmButton.click();
-//
-//    }
-//
+
 //    public void deleteBoard() {
-//        WebElement deleteButton = driver.findElement(By.xpath("//span[text()='Delete Board']"));
 //        deleteButton.click();
-//        WebElement confirmDeleteButton = driver.findElement(By.xpath("//button[@class='js-confirm full negate']"));
 //        confirmDeleteButton.click();
-//
-//    }
