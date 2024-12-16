@@ -18,16 +18,15 @@ Feature:  Testing Login Functionality of Trello Website
       | Done    |
 
  Scenario:Happy Path for the cards' creation and migration between the lists
-   When  User add the following cards to the "Todo" list:
-     | Card Name              |
-     | Sign up for Trello     |
-     | Get key and token      |
-     | Build a collection     |
-     | Working on Task        |
+   When User add the following cards to the following lists:
+     | Card Name                  | Todo    |
+     | Sign up for Trello         | Todo    |
+     | Get key and token          | Todo    |
+     | Build a collection         | Todo    |
+     | Working on Task            | Todo    |
+     | UI Automation              | Backlog |
+     | Writing Test Scenarios     | Backlog |
 
-   Then  User add the following cards to the "Backlog" list:
-     | UI Automation              |
-     | Writing Test Scenarios     |
 
     And User move the cards as follows:
   | Card Name              | Move To |

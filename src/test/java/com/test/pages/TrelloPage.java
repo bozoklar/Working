@@ -1,11 +1,14 @@
 package com.test.pages;
 
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import static utils.DriverHelper.driver;
 
 
 public class TrelloPage {
@@ -113,31 +116,43 @@ public class TrelloPage {
         addList.click();
         Thread.sleep(1000);
     }
+
+
+public void addCardToList(String cardName,String targetListName) throws InterruptedException {
+    addCardButton.click();
+    // Locate the input field for the list name
+cardTextField.sendKeys(cardName);
+Thread.sleep(3000);
+  addList.click();
+    Thread.sleep(3000);
+    Actions action = new Actions(driver);
+ //   action.dragAndDrop(cardElement, targetListElement).perform();
 }
 
 
+
+
 //  Card Creation Methods
-//    public void addCard(String cardName)  throws InterruptedException{
-////        addCardButton.click();
-////        cardTextField.click();
-////        cardTextField.sendKeys(cardName);
-////        addCard.submit();
+// public void addCardToList(String listName, String cardName) {
+//     addCardButton.click();
 //
-//    }
-//}
-//    // Card Move Methods (Drag and Drop)
-//    public void moveCardToList(String cardName, String moveToList) {
-//        WebElement card = driver.findElement(By.xpath("//span[text()='" + cardName + "']"));
-//        WebElement targetList = driver.findElement(By.xpath("//div[text()='" + moveToList + "']"));
-//        new org.openqa.selenium.interactions.Actions(driver).dragAndDrop(card, targetList).perform();
+//        cardTextField.sendKeys(cardName);
+//        addCardToList.click();
+////
+    }
+
+    // Card Move Methods (Drag and Drop)
+ //   public void moveCardToList(String cardName, String moveToList) {
+    //    new org.openqa.selenium.interactions.Actions(driver).dragAndDrop(card, targetList).perform();
 //    cardField.click();
 //    move.click();
 //    listScroll.click();
 //    positionScroll.click();
 //    moveButton.click();
 //    CloseIcon.click();
-//    }
-//
+
+ //   }
+
 //    // Board Closing and Deletion Methods
 //    public void closeBoard() {
 //        WebElement boardMenu = driver.findElement(By.xpath("//button[@aria-label='Show menu']"));
@@ -156,4 +171,3 @@ public class TrelloPage {
 //        confirmDeleteButton.click();
 //
 //    }
-//}

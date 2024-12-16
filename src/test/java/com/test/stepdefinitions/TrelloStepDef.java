@@ -60,33 +60,38 @@ public class TrelloStepDef {
     }
 
     // Scenario 2: Card Creation and Movement
-//    @When("User add the following cards to the {string} list:")
-//    public void user_adds_the_following_cards_to_the_list(String listName, DataTable dataTable) {
-//        for (String cardName : dataTable.asList(String.class)) {
-//            trelloPage.addCard(cardName, listName);
-//        }
-//    }
+    @When("User add the following cards to the following lists:")
+    public void user_adds_the_following_cards_to_the_list(DataTable dataTable) throws InterruptedException {
+        List<String> cardNames = dataTable.asList(String.class);
+        for (String cardName : cardNames) {
+       //     trelloPage.addCardToList(cardName);
+        }
+    }
 
-//    @Then("User add the following cards to the {string} list:")
-//    public void user_adds_the_following_cards_to_the_list(String listName, DataTable dataTable) {
-//        for (String cardName : dataTable.asList(String.class)) {
-//            trelloPage.addCard(cardName, listName);
-//        }
-//    }
 
-//    @Then("User move the cards as follows:")
-//    public void user_move_the_cards_as_follows(DataTable dataTable) {
+    @Then("User move the cards as follows:")
+    public void user_move_the_cards_as_follows(DataTable dataTable) {
 //        for (java.util.List<String> row : dataTable.asLists()) {
 //            String cardName = row.get(0);
 //            String moveTo = row.get(1);
 //            trelloPage.moveCardToList(cardName, moveTo);
 //        }
-//    }
 //
-//  //   Scenario 3: Board Closing and Deletion
-//    @Then("The board should be closed and deleted")
-//    public void the_board_should_be_closed_and_deleted() {
+//    }
+
+    List<List<String>> rows = dataTable.asLists(String.class);
+    // Iterate through each row and move the card to the target list
+        for (List<String> row : rows) {
+        String cardName = row.get(0);
+        String targetList = row.get(1);
+ //       trelloPage.moveCardToList(cardName, targetList);  // Move the card
+    }
+}
+  //   Scenario 3: Board Closing and Deletion
+    @Then("The board should be closed and deleted")
+    public void the_board_should_be_closed_and_deleted() {
 //        trelloPage.closeBoard();
 //        trelloPage.deleteBoard();
+    }
     }
 
