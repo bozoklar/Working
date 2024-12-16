@@ -62,33 +62,33 @@ public class TrelloStepDef {
 
     @When("User create multiple cards on the List")
     public void user_create_multiple_cards_on_the_list(DataTable dataTable) throws InterruptedException {
-         Map<String,String>row=dataTable.asMap();
-//        List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
-//
-//        for (Map<String, String> row : rows) {
-            String cardName = row.get("card Name");
-            String listName = row.get("List Name");
-            trelloPage.addCardToList(cardName);
-            trelloPage.addCardToList(listName);
+        List<List<String>> rows = dataTable.asLists(String.class);
+        for (List<String> row : rows) {
+            String todo = row.get(0);
+                String backlog = row.get(1);
+                trelloPage.addCardToList(backlog);
+            trelloPage.addCardToList(todo);
 
         }
+    }
 
-
-        //   List<List<String>> rows = dataTable.asLists(String.class);
-        // Iterate through each row and move the card to the target list
-        //      for (List<String> row : rows) {
-        //      String cardName = row.get(0);
-        //      String targetList = row.get(1);
-        //       trelloPage.moveCardToList(cardName, targetList);  // Move the card
-        //   }
+//    @When("User move the cards as follows:")
+//    public void user_move_the_cards_as_follows(DataTable dataTable) {
+//           List<List<String>> rows = dataTable.asLists(String.class);
+//       // Iterate through each row and move the card to the target list
+//              for (List<String> row : rows) {
+//              String cardName = row.get(0);
+//              String targetList = row.get(1);
+//               trelloPage.moveCardToList(cardName, targetList);  // Move the card
+//           }
 
         //   Scenario 3: Board Closing and Deletion
         //   @Then("The board should be closed and deleted")
         //   public void the_board_should_be_closed_and_deleted() {
 //        trelloPage.closeBoard();
 //        trelloPage.deleteBoard();
-    }
+    //}
 //}
-//    }
+    }
 
 

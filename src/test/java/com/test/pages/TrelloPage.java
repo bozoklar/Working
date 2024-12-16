@@ -133,10 +133,8 @@ public class TrelloPage {
         Thread.sleep(3000);
     }
 }
-//
-//
-//
-//  //   Card Move Methods (Drag and Drop)
+
+  //   Card Move Methods (Drag and Drop)
 //    public void moveCardToList(String cardName, String moveToList) {
 //        new org.openqa.selenium.interactions.Actions(driver).dragAndDrop(card, targetList).perform();
 //    cardField.click();
@@ -145,8 +143,8 @@ public class TrelloPage {
 //    positionScroll.click();
 //    moveButton.click();
 //    CloseIcon.click();
-//
-//    }
+
+    }
 //
 //    // Board Closing and Deletion Methods
 //    public void closeBoard() {

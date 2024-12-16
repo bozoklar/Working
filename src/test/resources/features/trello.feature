@@ -16,12 +16,11 @@ Feature:  Testing Login Functionality of Trello Website
       | Done    |
 
    When User create multiple cards on the List
-     | Sign up for Trello         |   Todo    |
-     | Get key and token          |   Todo    |
-     | Build a collection         |   Todo    |
-     | Working on Task            |   Todo    |
-     | UI Automation              |  Backlog  |
-     | Writing Test Scenarios     |  Backlog  |
+
+    |  Sign up for Trello  | UI Automation           |
+    |  Get key and token   | Writing Test Scenarios  |
+    |  Build a collection  |       null              |
+    |   Working on Task    |       null              |
 
 
 #    And User move the cards as follows:
