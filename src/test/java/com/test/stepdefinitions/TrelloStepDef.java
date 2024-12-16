@@ -62,49 +62,33 @@ public class TrelloStepDef {
 
     @When("User create multiple cards on the List")
     public void user_create_multiple_cards_on_the_list(DataTable dataTable) throws InterruptedException {
-        Map<String,String>Todo=dataTable.asMap();
-       String cardName= Todo.get("card Name");
-        String listName= Todo.get("List Name");
-        trelloPage.addCardToList(cardName);
-        trelloPage.addCardToList(listName);
-
-    }
-
-//        @When("User create multiple cards on the list")
-//        public void userCreateMultipleCardsOnTheList(List<List<String>> cardDetails) {
-//            // Loop over the table and create cards for each row
-//            for (List<String> cardName : ListName) {
-//                String cardName = row.get(0);
-//                String listName = row.get(1);
-//                trelloPage.openList(listName); // Open the appropriate list
-//                trelloPage.addCardTodo(cardName); // Add the card
-//            }
-//        }
-
-//        @When("User create multiple cards on the {string} List")
-//        public void user_create_multiple_cards_on_the_Todo_list(String listName, DataTable dataTable)
-////            List<String> cardNames = dataTable.asList(String.class,String.class);
+         Map<String,String>row=dataTable.asMap();
+//        List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
 //
-//            for (String cardName : cardNames) {
-//                trelloPage.addCardToList("Todo", cardName);
-//            }
-//        }
-//    }
+//        for (Map<String, String> row : rows) {
+            String cardName = row.get("card Name");
+            String listName = row.get("List Name");
+            trelloPage.addCardToList(cardName);
+            trelloPage.addCardToList(listName);
 
-            //   List<List<String>> rows = dataTable.asLists(String.class);
-            // Iterate through each row and move the card to the target list
-            //      for (List<String> row : rows) {
-            //      String cardName = row.get(0);
-            //      String targetList = row.get(1);
-            //       trelloPage.moveCardToList(cardName, targetList);  // Move the card
-            //   }
+        }
 
-            //   Scenario 3: Board Closing and Deletion
-            //   @Then("The board should be closed and deleted")
-            //   public void the_board_should_be_closed_and_deleted() {
+
+        //   List<List<String>> rows = dataTable.asLists(String.class);
+        // Iterate through each row and move the card to the target list
+        //      for (List<String> row : rows) {
+        //      String cardName = row.get(0);
+        //      String targetList = row.get(1);
+        //       trelloPage.moveCardToList(cardName, targetList);  // Move the card
+        //   }
+
+        //   Scenario 3: Board Closing and Deletion
+        //   @Then("The board should be closed and deleted")
+        //   public void the_board_should_be_closed_and_deleted() {
 //        trelloPage.closeBoard();
 //        trelloPage.deleteBoard();
-        }
+    }
+//}
 //    }
 
 

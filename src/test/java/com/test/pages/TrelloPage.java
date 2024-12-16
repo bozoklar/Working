@@ -114,7 +114,7 @@ public class TrelloPage {
     // Method to create a new list on the board
     public void createList(String listName) throws InterruptedException {
         listNameField.click();
-        // Locate the input field for the list name
+        Thread.sleep(2000);
         listNameField.sendKeys(listName);
         Thread.sleep(2000);
         addList.click();
